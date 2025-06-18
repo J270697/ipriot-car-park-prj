@@ -34,5 +34,5 @@ class CarPark:
         self.update_displays()
 
     def remove_car(self, plate):
-        self.plates.pop(plate)
+        self.plates.remove(plate)
         self.update_displays()
