@@ -8,5 +8,13 @@ class Display:
         return f"Display {self.id}: {self.message}"
 
     def update(self, data):
-        for key, value in data.items():
-            print(f"{key}: {value}")
+        if self.is_on:
+            # If a message is explicitly passed, use it
+            if "message" in data:
+                self.message = data["message"]
+            else:
+                # Otherwise, build default message
+                self.message = f"{data['available_bays']} bays available. Temp: {data['temperature']}°C"
+            return f"Display {self.id} updated: {self.message}"
+        else:
+            return f"Display {self.id} is off."
