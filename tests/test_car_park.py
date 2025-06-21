@@ -52,8 +52,7 @@ class TestCarPark(unittest.TestCase):
     def test_log_file_created(self):
         self.assertTrue(self.log_path.exists())
 
-    # inside the TestCarPark class
-    # inside the TestCarPark class
+
     def test_car_logged_when_entering(self):
         self.car_park.add_car("NEW-001")
         with self.car_park.log_file.open() as f:
@@ -74,7 +73,7 @@ class TestCarPark(unittest.TestCase):
 
     def test_write_config_creates(self):
         self.car_park.write_config()
-        self.assertTrue(self.config_path.exists(), "test")
+        self.assertTrue(self.config_path.exists())
 
         with self.config_path.open() as f:
             config_data = json.load(f)
@@ -86,7 +85,6 @@ class TestCarPark(unittest.TestCase):
     def test_from_config_creates_car_park(self):
         self.car_park.write_config()
         new_car_park = CarPark.from_config(self.config_path)
-
         self.assertEqual(new_car_park.location, self.car_park.location)
         self.assertEqual(new_car_park.capacity, self.car_park.capacity)
         self.assertEqual(str(new_car_park.log_file), str(self.log_path))
