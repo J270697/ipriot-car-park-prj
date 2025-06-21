@@ -11,6 +11,7 @@ class CarPark:
         self.plates = plates or []
         self.displays = displays or []
         self.sensors = sensors or []
+        # Pythonic way of checking if passed object == specified type, return default value, else return string passed
         self.log_file = log_file if isinstance(log_file, Path) else Path(log_file)
         self.log_file.touch(exist_ok=True)
         self.config_file = config_file if isinstance(config_file, Path) else Path(config_file)
@@ -58,6 +59,10 @@ class CarPark:
 
     @classmethod
     def from_config(cls, config_file=Path("config.json")):
+        """
+        :param config_file:
+        :return Constructs a CarPark object with json config dict values:
+        """
         config_file = config_file if isinstance(config_file, Path) else Path(config_file)
         with config_file.open() as f:
             config = json.load(f)
